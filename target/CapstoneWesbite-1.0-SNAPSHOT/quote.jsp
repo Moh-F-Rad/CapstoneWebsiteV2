@@ -1,0 +1,259 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<title>SMJ - Get a Quote</title>
+<%@include file='head.jsp'%>
+<%@include file='header.jsp'%>
+<body id="wrapbot" class="backgroundImages" style="background-image: url('Photos/aboutBackground.jpg');">
+
+<% int testVar1 = 1; %>
+
+    <div class="pageContent">
+        <div class="contentContainer">
+            <div id="quoteDiv">
+                <div id="quoteBlurb">
+                    <h1>Generate Your Quote!</h1>
+                    <p>Using our patented and secure technology, you can now a generate a quote online!</p>
+                    <p>To get your quote, please complete the form below and click Submit.</p>
+                    <p>Our system will calculate your personalized quote using our most up-to-date rates.</p>
+                </div>
+
+                <div id="quoteForm">
+                    <form method="post" enctype="application/x-www-form-urlencoded" action="helloServlet"  onsubmit="premiumCalculation()">
+
+                        <fieldset>
+                            <legend>Personal Details</legend>
+
+                        <%--<p>
+                            <label>Title
+                                <select id="quote_title" name="title">
+                                    <option value="" selected="selected">Select One</option>
+                                    <option value="title_mr" >Mr.</option>
+                                    <option value="title_ms" >Ms.</option>
+                                    <option value="title_mrs" >Mrs.</option>
+                                    <option value="title_dr" >Dr.</option>
+                                    <option value="title_esq" >Esq.</option>
+                                    <option value="title_hon" >Hon.</option>
+                                    <option value="title_prof" >Prof.</option>
+                                </select>
+                            </label>
+                        </p>--%>
+
+                        <p>
+                            <label>First Name
+<%--                                <input type="text" name="customer_fName" required>--%>
+                                <input type="text" id="fName" name="customer_fName"> <%--DEBUG: removed required--%>
+                            </label>
+                        </p>
+
+                        <p>
+                            <label>Last Name
+<%--                                <input type="text" name="customer_lName" required>--%>
+                                <input type="text" id="lastName" name="customer_lName"> <%--DEBUG: removed required--%>
+                            </label>
+                        </p>
+
+                        <%--<p>
+                            <label>Date of Birth
+                                <input type="datetime-local" name="dob" >
+                            </label>
+                        </p>--%>
+
+                        <%--<p>
+                            <label>Home Phone
+                                <input type="tel" name="phone_home">
+                            </label>
+                        </p>
+
+                        <p>
+                            <label>Work Phone
+                                <input type="tel" name="phone_work">
+                            </label>
+                        </p>--%>
+
+                        <p>
+                            <label>Mobile Phone
+<%--                                <input type="tel" name="phone_mobile" required>--%>
+
+                                <input type="tel" id="phone" name="phone_mobile"><%--DEBUG: removed required--%>
+                            </label>
+                        </p>
+
+                        <p>
+                            <label>Email Address
+                                <input type="email" name="email_address" >
+                            </label>
+                        </p>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>Property Details</legend>
+
+                        <p>
+                            <p>
+                                <label>Property Location
+                                    <select id="property_location" name="location">
+                                        <option value="" selected="selected">Select One</option>
+                                        <option value="property_location_urbanD" >Dense Urban</option>
+                                        <option value="property_location_urban" >Urban</option>
+                                        <option value="property_location_rural" >Rural</option>
+                                    </select>
+                                </label>
+                            </p>
+                            <label>Property Age (Years)
+                                <input type="number" id="propertyAge" name="property_age">
+                            </label>
+                        </p>
+
+                        <p>
+                            <label>Type of Heating
+                                <select id="property_heating_type" name="heating_type">
+                                    <option value="" selected="selected">Select One</option>
+                                    <option value="heating_type_electric" >Electric</option>
+                                    <option value="heating_type_oil" >Oil</option>
+                                    <option value="heating_type_wood" >Wood</option>
+                                    <option value="heating_type_gas" >Gas</option>
+                                    <option value="heating_type_other" >Other</option>
+                                </select>
+                            </label>
+                        </p>
+
+                        <p>
+                            <label>Type of Dwelling
+                                <select id="property_dwelling_type" name="dwelling_type" >
+                                    <option value="" selected="selected">Select One</option>
+                                    <option value="dwelling_type_single" >Single-dwelling</option>
+                                    <option value="dwelling_type_apartment" >Apartment</option>
+                                    <option value="dwelling_type_bungalow" >Bungalow</option>
+                                    <option value="dwelling_type_semi_attached" >Semi-attached</option>
+                                </select>
+                            </label>
+                        </p>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>Auto Details</legend>
+
+                        <p>
+                            <label>Vehicle Value
+                                <input type="number" name="auto_value" id="vehicleValue" >
+                            </label>
+                        </p>
+
+                        <p>
+                            <label>Driver Age (Years)
+                                <input type="number" name="auto_driver_age" id="driverAge" required>
+                            </label>
+                        </p>
+
+                        <p>
+                            <label>Vehicle Age (Years)
+                                <input type="number" name="auto_age_years" id="vehicleAge" required>
+                            </label>
+                        </p>
+
+                        <p>
+                            <label>Number of Accidents (Past 5 Years)
+                                <input type="number" name="auto_accident_count" id="autoAccidentCount" >
+                            </label>
+                        </p>
+                        </fieldset>
+
+
+                        <fieldset>
+                            <legend>Other Details</legend>
+
+                        <p>
+                            <label>Comments
+                                <textarea name="comments" id="commentBox" maxlength="500"></textarea>
+                            </label>
+                        </p>
+
+<%--    &lt;%&ndash;                    <p align="center"><label id="subscription"> <input  type="checkbox" name="newsletter" value="newsletter"> Subscribe to Our Newsletter </label></p>&ndash;%&gt;--%>
+
+                            <p><input align="center" type="submit" value="Generate Quote" style="width: 150px;height: 50px;" id="generateQuote"  ></p>
+<%--                        </fieldset>--%>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <script>
+
+
+        // function premiumCalculation(e){
+        function premiumCalculation(){
+
+            let numberOfAccidents = document.getElementById("autoAccidentCount").value;
+            let driverAge = document.getElementById("driverAge").value;
+            let propertyAge = document.getElementById("propertyAge").value;
+            let propertyHeatingType = document.getElementById("property_heating_type").value;
+            let carBasePremium = 750.0;
+            let propertyBasePremium = 500.0
+            let carAgeFactor = 0;
+            let propertyAgeFactor = 1.0;
+            let propertyHeatingFactor = 0;
+            let accidentFactor = 1;
+
+            if (propertyAge <25){
+                propertyAgeFactor = 1.0
+            }
+            else if ((propertyAge > 25) && (propertyAge <50)){
+                propertyAgeFactor = 1.25
+            }
+            else if (propertyAge > 50){
+                propertyAgeFactor = 1.50;
+            }
+
+            switch (propertyHeatingType) {
+                case "heating_type_electric":
+                    propertyHeatingFactor = 1.0;
+                    break;
+                case "heating_type_oil":
+                    propertyHeatingFactor = 2.0;
+                    break;
+                case "heating_type_wood":
+                    propertyHeatingFactor = 1.25;
+                    break;
+                case "heating_type_gas":
+                    propertyHeatingFactor = 1.00;
+                    break;
+                case "heating_type_other":
+                    propertyHeatingFactor = 1.00;
+                    break;
+            }
+
+            if (driverAge <25){
+                carAgeFactor=2;
+            } else if (driverAge >25) {
+                carAgeFactor=1;
+            }
+
+            if (numberOfAccidents == 0){
+                accidentFactor = 1;
+            }
+            else if (numberOfAccidents == 1){
+                accidentFactor = 1.25;
+            }
+            else if (numberOfAccidents > 1){
+                accidentFactor = 2.50;
+            }
+
+            document.getElementById("vehicleAge").value = propertyBasePremium * propertyAgeFactor * propertyHeatingFactor;
+            document.getElementById("autoAccidentCount").value = carBasePremium * carAgeFactor * accidentFactor;
+
+        }
+
+    function showHide(){
+
+    }
+    </script>
+
+    <button onclick="showHide()">Test</button>
+
+
+</body>
+<%@include file='footer.jsp'%>
+</html>
